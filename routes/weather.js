@@ -1,4 +1,3 @@
-// weatherRouter.js
 const express = require('express');
 const router = express.Router();
 const axios = require('axios');
@@ -7,7 +6,6 @@ const Weather = require('../models/Weather');
 
 router.get('/current', async (req, res) => {
   const { lat, lon } = req.query;
-console.log('kkkkk');
   try {
     const response = await axios.get(
       `http://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${process.env.API_Key}`
@@ -25,7 +23,6 @@ console.log('kkkkk');
 
     res.json(newWeather);
   } catch (err) {
-    console.error('Error fetching current weather data:', err);
     res.status(500).send('Server error');
   }
 });
